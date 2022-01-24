@@ -25,9 +25,10 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = navHostFragment.getNavController();
         NavigationUI.setupWithNavController(bottomNav, navController);
 
+        bottomNav.setSelectedItemId(R.id.homeFragment);
         Set<Integer> topLevelDestinations = new HashSet<>();
+        topLevelDestinations.add(R.id.settingsFragment);
         topLevelDestinations.add(R.id.shoppingListFragment);
-        topLevelDestinations.add(R.id.scanFragment);
         topLevelDestinations.add(R.id.homeFragment);
         topLevelDestinations.add(R.id.summaryFragment);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(topLevelDestinations).build();
