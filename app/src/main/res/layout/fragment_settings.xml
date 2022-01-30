@@ -6,15 +6,423 @@
     android:layout_height="match_parent"
     tools:context=".SettingsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Settings Fragment"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF">
+
+        <TableLayout
+            android:id="@+id/settingsTable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF">
+
+            <TableRow
+                android:id="@+id/darkModeRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5sp"
+                android:paddingTop="10sp"
+                android:paddingRight="5sp"
+                android:paddingBottom="10sp">
+
+                <TextView
+                    android:id="@+id/darkModeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Dark Mode"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/darkModeSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/budgetRow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="5sp"
+                android:paddingTop="10sp"
+                android:paddingRight="5sp"
+                android:paddingBottom="10sp">
+
+                <TextView
+                    android:id="@+id/budgetText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Budget Tracking"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/budgetSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/wasteRow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="5sp"
+                android:paddingTop="10sp"
+                android:paddingRight="5sp"
+                android:paddingBottom="10sp">
+
+                <TextView
+                    android:id="@+id/wasteText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Waste Tracking"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/wasteSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/blankRow0"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="5sp"
+                android:paddingTop="10sp"
+                android:paddingRight="5sp"
+                android:paddingBottom="10sp">
+
+                <TextView
+                    android:id="@+id/blankText0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Blank Setting"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/blankSwitch0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/blankRow1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="5sp"
+                android:paddingTop="10sp"
+                android:paddingRight="5sp"
+                android:paddingBottom="10sp">
+
+                <TextView
+                    android:id="@+id/blankText1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Blank Setting"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/blankSwitch1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/blankRow2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="5sp"
+                android:paddingTop="10sp"
+                android:paddingRight="5sp"
+                android:paddingBottom="10sp">
+
+                <TextView
+                    android:id="@+id/blankText2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Blank Setting"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/blankSwitch2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/blankRow3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="5sp"
+                android:paddingTop="10sp"
+                android:paddingRight="5sp"
+                android:paddingBottom="10sp">
+
+                <TextView
+                    android:id="@+id/blankText3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Blank Setting"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/blankSwitch3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/blankRow4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="5sp"
+                android:paddingTop="10sp"
+                android:paddingRight="5sp"
+                android:paddingBottom="10sp">
+
+                <TextView
+                    android:id="@+id/blankText4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Blank Setting"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/blankSwitch4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/blankRow5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="5sp"
+                android:paddingTop="10sp"
+                android:paddingRight="5sp"
+                android:paddingBottom="10sp">
+
+                <TextView
+                    android:id="@+id/blankText5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Blank Setting"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/blankSwitch5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/blankRow6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="5sp"
+                android:paddingTop="10sp"
+                android:paddingRight="5sp"
+                android:paddingBottom="10sp">
+
+                <TextView
+                    android:id="@+id/blankText6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Blank Setting"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/blankSwitch6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/blankRow7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="5sp"
+                android:paddingTop="10sp"
+                android:paddingRight="5sp"
+                android:paddingBottom="10sp">
+
+                <TextView
+                    android:id="@+id/blankText7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Blank Setting"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/blankSwitch7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/blankRow8"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="5sp"
+                android:paddingTop="10sp"
+                android:paddingRight="5sp"
+                android:paddingBottom="10sp">
+
+                <TextView
+                    android:id="@+id/blankText8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Blank Setting"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/blankSwitch8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/blankRow9"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="5sp"
+                android:paddingTop="10sp"
+                android:paddingRight="5sp"
+                android:paddingBottom="10sp">
+
+                <TextView
+                    android:id="@+id/blankText9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Blank Setting"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/blankSwitch9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/blankRow10"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="5sp"
+                android:paddingTop="10sp"
+                android:paddingRight="5sp"
+                android:paddingBottom="10sp">
+
+                <TextView
+                    android:id="@+id/blankText10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Blank Setting"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/blankSwitch10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/blankRow11"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="5sp"
+                android:paddingTop="10sp"
+                android:paddingRight="5sp"
+                android:paddingBottom="10sp">
+
+                <TextView
+                    android:id="@+id/blankText11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Blank Setting"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/blankSwitch11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/blankRow12"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="5sp"
+                android:paddingTop="10sp"
+                android:paddingRight="5sp"
+                android:paddingBottom="10sp">
+
+                <TextView
+                    android:id="@+id/blankText12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Blank Setting"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/blankSwitch12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/termsRow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#BDB6B6">
+
+                <Button
+                    android:id="@+id/termsButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="#BDB6B6"
+                    android:text="Terms and Conditions"
+                    android:textAlignment="center"
+                    android:textColor="#DA0A0A"
+                    android:textStyle="italic" />
+            </TableRow>
+
+        </TableLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
