@@ -17,10 +17,10 @@ public class ScannerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scanner);
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.scanner_top_menu, menu);
         return super.onCreateOptionsMenu(menu);
-    }
+    }*/
 }
