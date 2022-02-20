@@ -18,11 +18,11 @@ public class ScannerFragmentAdapter extends FragmentStateAdapter{
     public Fragment createFragment(int position) {
         switch(position){
             case 1:
-                return new ReceiptScannerFragment();
+                return new BarcodeScannerFragment();
             case 2:
                 return new ManualAddFragment();
         }
-        return new BarcodeScannerFragment();
+        return new ReceiptScannerFragment();
     }
 
     @Override

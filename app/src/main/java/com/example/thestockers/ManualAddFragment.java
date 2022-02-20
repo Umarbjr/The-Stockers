@@ -33,6 +33,15 @@ public class ManualAddFragment extends Fragment implements AdapterView.OnItemSel
         productName_manAdd = view.findViewById(R.id.productET_manualAdd);
         quantity_manAdd = view.findViewById(R.id.quantityET_manualAdd);
         addButton = view.findViewById(R.id.manualAdd_button);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HomeDatabaseHelper myDB = new HomeDatabaseHelper(ManualAddFragment.this.getActivity());
+                myDB.addItem(productName_manAdd.getText().toString().trim(),
+                        Integer.valueOf(quantity_manAdd.getText().toString().trim()), selected_uom);
+            }
+        });
+
         productName_manAdd.addTextChangedListener(AddInfoTextWatcher);
         quantity_manAdd.addTextChangedListener(AddInfoTextWatcher);
 

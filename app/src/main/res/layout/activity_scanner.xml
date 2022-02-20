@@ -15,22 +15,22 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/barcode_tabItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:icon="@drawable/ic_placeholder_barcode" />
-
-        <com.google.android.material.tabs.TabItem
             android:id="@+id/receipt_tabItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/ic_receipt" />
 
         <com.google.android.material.tabs.TabItem
+            android:id="@+id/barcode_tabItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/ic_placeholder_barcode" />
+
+        <com.google.android.material.tabs.TabItem
             android:id="@+id/enter_add_tabItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:icon="@drawable/ic_add" />
+            android:icon="@drawable/ic_create" />
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager2.widget.ViewPager2
