@@ -49,6 +49,7 @@ public class HomeUpdateActivity extends AppCompatActivity {
 
         // 1. This is called first.
         getAndSetIntentData();
+
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,6 +58,7 @@ public class HomeUpdateActivity extends AppCompatActivity {
                 product = product_input.getText().toString().trim();
                 quantity = quantity_input.getText().toString().trim();
                 myDB.updateData(id, product, quantity, unit);
+                finish();
             }
         });
     }
