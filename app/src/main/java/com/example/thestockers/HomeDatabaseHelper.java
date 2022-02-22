@@ -21,7 +21,7 @@ class HomeDatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_HOME_QUANTITY = "home_quantity";
     private static final String COLUMN_UNIT_OF_MEASURE = "product_uom";
 
-    public HomeDatabaseHelper(@Nullable Context context) {
+    HomeDatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
     }
@@ -67,6 +67,22 @@ class HomeDatabaseHelper extends SQLiteOpenHelper {
         }
         return cursor;
     }
+
+    void updateData(String row_id, String product, String quantity, String unit){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_HOME_PRODUCT_NAME, product);
+        cv.put(COLUMN_HOME_QUANTITY, quantity);
+        cv.put(COLUMN_UNIT_OF_MEASURE, unit);
+
+        long result = db.update(TABLE_NAME, cv, " home_inv_id=?", new String[]{row_id});
+        if(result == -1){
+            Toast.makeText(context, "Update Failed" , Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context, "Updated" , Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 
 

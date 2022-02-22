@@ -27,7 +27,7 @@ public class HomeFragment extends Fragment{
     FloatingActionButton scanner_button;
 
     HomeDatabaseHelper myDB;
-    ArrayList<String> product_name, quantity, unit;
+    ArrayList<String> entry_id, product_name, quantity, unit;
     HomeCustomAdapter customAdapter;
 
     @Override
@@ -47,13 +47,14 @@ public class HomeFragment extends Fragment{
             }
         });
         myDB = new HomeDatabaseHelper(this.getActivity());
+        entry_id = new ArrayList<>();
         product_name = new ArrayList<>();
         quantity = new ArrayList<>();
         unit = new ArrayList<>();
 
         storeDataInArrays();
 
-        customAdapter = new HomeCustomAdapter(this.getActivity(), product_name, quantity, unit);
+        customAdapter = new HomeCustomAdapter(this.getActivity(), this.getActivity(), entry_id, product_name, quantity, unit);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 
@@ -66,6 +67,7 @@ public class HomeFragment extends Fragment{
             Toast.makeText(this.getActivity(), "No data.", Toast.LENGTH_SHORT).show();
         }else{
             while(cursor.moveToNext()){
+                entry_id.add(cursor.getString(0));
                 product_name.add(cursor.getString(1));
                 quantity.add(cursor.getString(2));
                 unit.add(cursor.getString(3));
