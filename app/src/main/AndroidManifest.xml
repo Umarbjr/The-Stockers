@@ -12,11 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheStockers">
         <activity
-            android:name=".ShoppingAddFragment"
-            android:exported="false" />
+            android:name=".ListAddActivity"
+            android:exported="false"
+            android:label="Add Item"
+            android:parentActivityName=".ViewList"/>
         <activity
-            android:name=".ShoppingListActivity"
-            android:exported="false" />
+            android:name=".ViewList"
+            android:exported="false"
+            android:label="Shopping List"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ShoppingAddActivity"
+            android:exported="false"
+            android:label="Add List"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ScannerActivity"
             android:exported="true"

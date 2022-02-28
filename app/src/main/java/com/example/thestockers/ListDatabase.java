@@ -9,17 +9,19 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-public class ShoppingListDatabase extends SQLiteOpenHelper {
+public class ListDatabase extends SQLiteOpenHelper {
 
     private Context context;
     private static final String DATABASE_NAME = "ShoppingList.db";
     private static final int DATABASE_VERSION = 1;
 
-    private static final String TABLE_NAME = "my_shopping_lists";
+    private static final String TABLE_NAME = "shopping_list";
     private static final String COLUMN_ID = "_id";
-    private static final String COLUMN_TITLE = "list_name";
+    private static final String COLUMN_PRODUCT_NAME = "product_name";
+    private static final String COLUMN_GROUP_ID = "group_id";
+    private static final String COLUMN_QUANTITY = "quantity";
 
-    public ShoppingListDatabase(@Nullable Context context) {
+    public ListDatabase(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
     }
@@ -29,7 +31,9 @@ public class ShoppingListDatabase extends SQLiteOpenHelper {
         String query =
                 "CREATE TABLE " + TABLE_NAME +
                         " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        COLUMN_TITLE + " TEXT);";
+                        COLUMN_PRODUCT_NAME + " TEXT, " +
+                        COLUMN_GROUP_ID + " INTEGER, " +
+                        COLUMN_QUANTITY + " INTEGER);";
         db.execSQL(query);
     }
 
@@ -39,11 +43,13 @@ public class ShoppingListDatabase extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    void addList(String title){
+    void addItem(String name, int group, int quantity){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        cv.put(COLUMN_TITLE, title);
+        cv.put(COLUMN_PRODUCT_NAME, name);
+        cv.put(COLUMN_GROUP_ID, group);
+        cv.put(COLUMN_QUANTITY, quantity);
         long result = db.insert(TABLE_NAME, null, cv);
         if (result == -1){
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
@@ -53,8 +59,8 @@ public class ShoppingListDatabase extends SQLiteOpenHelper {
         }
     }
 
-    Cursor readAllData(){
-        String query = "SELECT * FROM " + TABLE_NAME;
+    Cursor readAllData(int id){
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE group_id = " + id;
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = null;
