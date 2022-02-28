@@ -35,7 +35,8 @@ public class ItemCustomAdapter extends RecyclerView.Adapter<ItemCustomAdapter.My
 
     @Override
     public void onBindViewHolder(@NonNull ItemCustomAdapter.MyViewHolder holder, int position) {
-
+        holder.item_name_txt.setText(String.valueOf(item_name.get(position)));
+        holder.item_quantity_txt.setText(String.valueOf(item_quantity.get(position)));
     }
 
     @Override
@@ -44,6 +45,7 @@ public class ItemCustomAdapter extends RecyclerView.Adapter<ItemCustomAdapter.My
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
+
         TextView item_name_txt, item_quantity_txt;
         ConstraintLayout itemLayout;
 

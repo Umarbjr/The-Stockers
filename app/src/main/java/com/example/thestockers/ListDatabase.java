@@ -16,7 +16,6 @@ public class ListDatabase extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     private static final String TABLE_NAME = "shopping_list";
-    private static final String COLUMN_ID = "_id";
     private static final String COLUMN_PRODUCT_NAME = "product_name";
     private static final String COLUMN_GROUP_ID = "group_id";
     private static final String COLUMN_QUANTITY = "quantity";
@@ -28,13 +27,6 @@ public class ListDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String query =
-                "CREATE TABLE " + TABLE_NAME +
-                        " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        COLUMN_PRODUCT_NAME + " TEXT, " +
-                        COLUMN_GROUP_ID + " INTEGER, " +
-                        COLUMN_QUANTITY + " INTEGER);";
-        db.execSQL(query);
     }
 
     @Override

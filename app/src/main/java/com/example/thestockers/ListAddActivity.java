@@ -18,6 +18,8 @@ public class ListAddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_add);
 
+        int groupID = getIntentData();
+
         name_input = findViewById(R.id.item_name_input);
         quantity_input = findViewById(R.id.item_quantity);
         add_button = findViewById(R.id.item_add_button);
@@ -27,7 +29,7 @@ public class ListAddActivity extends AppCompatActivity {
             public void onClick(View v) {
                 ListDatabase myDB = new ListDatabase(ListAddActivity.this);
                 myDB.addItem(name_input.getText().toString().trim(),
-                        getIntentData(),
+                        groupID,
                         Integer.valueOf(quantity_input.getText().toString().trim()));
             }
         });

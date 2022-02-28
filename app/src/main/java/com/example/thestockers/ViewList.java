@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -29,6 +31,7 @@ public class ViewList extends AppCompatActivity {
         setContentView(R.layout.activity_view_list);
 
         int groupID = getIntentData();
+        Activity activity = this;
 
         recyclerView = findViewById(R.id.list_recyclerView);
         add_button = findViewById(R.id.add_item_button);
@@ -37,7 +40,7 @@ public class ViewList extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ViewList.this, ListAddActivity.class);
                 intent.putExtra("GROUP_ID", groupID);
-                startActivity(intent);
+                activity.startActivityForResult(intent,1);
             }
         });
 
@@ -47,7 +50,6 @@ public class ViewList extends AppCompatActivity {
         item_quantity = new ArrayList<>();
 
         storeDataInArrays(groupID);
-
         customAdapter = new ItemCustomAdapter(ViewList.this, item_id, item_name, item_group, item_quantity);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(ViewList.this));
