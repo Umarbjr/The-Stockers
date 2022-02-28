@@ -1,12 +1,16 @@
 package com.example.thestockers;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -14,10 +18,13 @@ import java.util.ArrayList;
 public class HomeCustomAdapter extends RecyclerView.Adapter<HomeCustomAdapter.MyViewHolder> {
 
     private Context context;
-    private ArrayList product, quantity, unit;
+    Activity activity;
+    private ArrayList id, product, quantity, unit;
 
-    HomeCustomAdapter(Context context, ArrayList product, ArrayList quantity, ArrayList unit){
+    HomeCustomAdapter(Activity activity, Context context, ArrayList id, ArrayList product, ArrayList quantity, ArrayList unit){
+        this.activity = activity;
         this.context = context;
+        this.id = id;
         this.product = product;
         this.quantity = quantity;
         this.unit = unit;
@@ -32,10 +39,23 @@ public class HomeCustomAdapter extends RecyclerView.Adapter<HomeCustomAdapter.My
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         holder.productTxt.setText(String.valueOf(product.get(position)));
         holder.quantityTxt.setText(String.valueOf(quantity.get(position)));
         holder.unitTxt.setText(String.valueOf(unit.get(position)));
+
+        // Set listener for all linearlayout rows
+        holder.homeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, HomeUpdateActivity.class);
+                intent.putExtra("id", String.valueOf(id.get(position)));
+                intent.putExtra("product", String.valueOf(product.get(position)));
+                intent.putExtra("quantity", String.valueOf(quantity.get(position)));
+                intent.putExtra("unit", String.valueOf(unit.get(position)));
+                activity.startActivityForResult(intent, 1);
+            }
+        });
     }
 
     @Override
@@ -46,12 +66,14 @@ public class HomeCustomAdapter extends RecyclerView.Adapter<HomeCustomAdapter.My
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView productTxt, quantityTxt, unitTxt;
+        LinearLayout homeLayout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             productTxt = itemView.findViewById(R.id.product_name_txt);
             quantityTxt = itemView.findViewById(R.id.quantity_txt);
             unitTxt = itemView.findViewById(R.id.unit_txt);
+            homeLayout = itemView.findViewById(R.id.homeLayout);
         }
     }
 

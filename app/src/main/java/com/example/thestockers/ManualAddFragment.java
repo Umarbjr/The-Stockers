@@ -39,6 +39,10 @@ public class ManualAddFragment extends Fragment implements AdapterView.OnItemSel
                 HomeDatabaseHelper myDB = new HomeDatabaseHelper(ManualAddFragment.this.getActivity());
                 myDB.addItem(productName_manAdd.getText().toString().trim(),
                         Integer.valueOf(quantity_manAdd.getText().toString().trim()), selected_uom);
+                // clear editTexts & default spinner
+                productName_manAdd.getText().clear();
+                quantity_manAdd.getText().clear();
+                uom_spinner.setSelection(0);
             }
         });
 
