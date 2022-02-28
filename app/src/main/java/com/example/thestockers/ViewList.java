@@ -1,9 +1,11 @@
 package com.example.thestockers;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -40,6 +42,15 @@ public class ViewList extends AppCompatActivity {
         });
 
         myDB = new ListDatabase(ViewList.this);
+        item_id = new ArrayList<>();
+        item_name = new ArrayList<>();
+        item_quantity = new ArrayList<>();
+
+        storeDataInArrays(groupID);
+
+        customAdapter = new ItemCustomAdapter(ViewList.this, item_id, item_name, item_group, item_quantity);
+        recyclerView.setAdapter(customAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(ViewList.this));
 
     }
 
@@ -50,6 +61,20 @@ public class ViewList extends AppCompatActivity {
         else{
             Toast.makeText(this, "No data.", Toast.LENGTH_SHORT).show();
             return 0;
+        }
+    }
+
+    void storeDataInArrays(int groupID){
+        Cursor cursor = myDB.readAllData(groupID);
+        if(cursor.getCount() == 0){
+            Toast.makeText(ViewList.this, "No data.", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            while(cursor.moveToNext()){
+                item_id.add(cursor.getString(0));
+                item_name.add(cursor.getString(1));
+                item_quantity.add(cursor.getString(3));
+            }
         }
     }
 }
