@@ -1,7 +1,10 @@
 package com.example.thestockers;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,7 +20,7 @@ public class HomeUpdateActivity extends AppCompatActivity {
 
     EditText product_input, quantity_input;
     Spinner uom_input;
-    Button update_button;
+    Button update_button, delete_button;
     String id, product, quantity, unit;
 
     @Override
@@ -30,6 +33,7 @@ public class HomeUpdateActivity extends AppCompatActivity {
         product_input.addTextChangedListener(UpdateInfoTextWatcher);
         quantity_input.addTextChangedListener(UpdateInfoTextWatcher);
         update_button = findViewById(R.id.update_button);
+        delete_button = findViewById(R.id.delete_button);
 
         // Unit of Measure Spinner
         uom_input = findViewById(R.id.UoM_spinner_update);
@@ -50,6 +54,11 @@ public class HomeUpdateActivity extends AppCompatActivity {
         // 1. This is called first.
         getAndSetIntentData();
 
+        ActionBar ab = getSupportActionBar();
+        if(ab != null) {
+            ab.setTitle(product);
+        }
+
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,6 +68,13 @@ public class HomeUpdateActivity extends AppCompatActivity {
                 quantity = quantity_input.getText().toString().trim();
                 myDB.updateData(id, product, quantity, unit);
                 finish();
+            }
+        });
+
+        delete_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                confirmDialog();
             }
         });
     }
@@ -79,6 +95,25 @@ public class HomeUpdateActivity extends AppCompatActivity {
         }else{
             Toast.makeText(this, "No data.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    void confirmDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete " + product + " ?");
+        builder.setMessage("Are you sure you want to delete " + product + " ?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                HomeDatabaseHelper db = new HomeDatabaseHelper(HomeUpdateActivity.this);
+                db.deleteOneRow(id);
+                finish();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) { }
+        });
+        builder.create().show();
     }
 
     // Enable update button when product & quantity input are non-empty.

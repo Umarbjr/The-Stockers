@@ -6,9 +6,11 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -58,6 +60,9 @@ public class HomeFragment extends Fragment{
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 
+        //here
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeItem(customAdapter));
+        itemTouchHelper.attachToRecyclerView(recyclerView);
         return view;
     }
 
@@ -72,6 +77,28 @@ public class HomeFragment extends Fragment{
                 quantity.add(cursor.getString(2));
                 unit.add(cursor.getString(3));
             }
+        }
+    }
+
+    //here
+    public class SwipeItem extends ItemTouchHelper.SimpleCallback {
+        HomeCustomAdapter adapter;
+        public SwipeItem(HomeCustomAdapter itemAdapter) {
+            super(0, ItemTouchHelper.RIGHT);
+            this.adapter = itemAdapter;
+        }
+
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            int position = viewHolder.getAbsoluteAdapterPosition();
+            this.adapter.deleteItem(position);
+            HomeDatabaseHelper db = new HomeDatabaseHelper(HomeFragment.this.getActivity());
+            db.deleteOneRow(entry_id.get(position));
         }
     }
 

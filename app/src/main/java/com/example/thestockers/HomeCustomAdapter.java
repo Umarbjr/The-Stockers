@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class HomeCustomAdapter extends RecyclerView.Adapter<HomeCustomAdapter.My
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.productTxt.setText(String.valueOf(product.get(position)));
         holder.quantityTxt.setText(String.valueOf(quantity.get(position)));
         holder.unitTxt.setText(String.valueOf(unit.get(position)));
@@ -75,6 +76,15 @@ public class HomeCustomAdapter extends RecyclerView.Adapter<HomeCustomAdapter.My
             unitTxt = itemView.findViewById(R.id.unit_txt);
             homeLayout = itemView.findViewById(R.id.homeLayout);
         }
+    }
+
+    //here
+    public void deleteItem(int position){
+        this.id.remove(position);
+        this.product.remove(position);
+        this.quantity.remove(position);
+        this.unit.remove(position);
+        notifyItemRemoved(position);
     }
 
 }
