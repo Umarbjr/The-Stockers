@@ -60,7 +60,6 @@ public class HomeFragment extends Fragment{
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 
-        //here
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeItem(customAdapter));
         itemTouchHelper.attachToRecyclerView(recyclerView);
         return view;
@@ -80,7 +79,6 @@ public class HomeFragment extends Fragment{
         }
     }
 
-    //here
     public class SwipeItem extends ItemTouchHelper.SimpleCallback {
         HomeCustomAdapter adapter;
         public SwipeItem(HomeCustomAdapter itemAdapter) {
@@ -95,10 +93,10 @@ public class HomeFragment extends Fragment{
 
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            int position = viewHolder.getAbsoluteAdapterPosition();
-            this.adapter.deleteItem(position);
+            int pos = viewHolder.getBindingAdapterPosition();
             HomeDatabaseHelper db = new HomeDatabaseHelper(HomeFragment.this.getActivity());
-            db.deleteOneRow(entry_id.get(position));
+            db.deleteOneRow(entry_id.get(pos));
+            this.adapter.deleteItem(pos);
         }
     }
 

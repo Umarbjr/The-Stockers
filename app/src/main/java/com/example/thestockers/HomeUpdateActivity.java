@@ -74,7 +74,9 @@ public class HomeUpdateActivity extends AppCompatActivity {
         delete_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                confirmDialog();
+                HomeDatabaseHelper db = new HomeDatabaseHelper(HomeUpdateActivity.this);
+                db.deleteOneRow(id);
+                finish();
             }
         });
     }
@@ -95,25 +97,6 @@ public class HomeUpdateActivity extends AppCompatActivity {
         }else{
             Toast.makeText(this, "No data.", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    void confirmDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Delete " + product + " ?");
-        builder.setMessage("Are you sure you want to delete " + product + " ?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                HomeDatabaseHelper db = new HomeDatabaseHelper(HomeUpdateActivity.this);
-                db.deleteOneRow(id);
-                finish();
-            }
-        });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) { }
-        });
-        builder.create().show();
     }
 
     // Enable update button when product & quantity input are non-empty.

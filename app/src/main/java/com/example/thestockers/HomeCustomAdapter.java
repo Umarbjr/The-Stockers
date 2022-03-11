@@ -78,7 +78,6 @@ public class HomeCustomAdapter extends RecyclerView.Adapter<HomeCustomAdapter.My
         }
     }
 
-    //here
     public void deleteItem(int position){
         this.id.remove(position);
         this.product.remove(position);

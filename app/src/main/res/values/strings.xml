@@ -2,7 +2,7 @@
     <string name="app_name">Fridge Stalker</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string-array name="unit_of_measure">
-        <item>Each</item>
+        <item>Count</item>
         <item>Bag</item>
         <item>Dozen</item>
         <item>Case</item>
