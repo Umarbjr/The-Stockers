@@ -20,12 +20,13 @@ public class HomeCustomAdapter extends RecyclerView.Adapter<HomeCustomAdapter.My
 
     private Context context;
     Activity activity;
-    private ArrayList id, product, quantity, unit;
+    private ArrayList id, date, product, quantity, unit;
 
-    HomeCustomAdapter(Activity activity, Context context, ArrayList id, ArrayList product, ArrayList quantity, ArrayList unit){
+    HomeCustomAdapter(Activity activity, Context context, ArrayList id, ArrayList date, ArrayList product, ArrayList quantity, ArrayList unit){
         this.activity = activity;
         this.context = context;
         this.id = id;
+        this.date = date;
         this.product = product;
         this.quantity = quantity;
         this.unit = unit;
@@ -41,6 +42,7 @@ public class HomeCustomAdapter extends RecyclerView.Adapter<HomeCustomAdapter.My
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        holder.dateTxt.setText(String.valueOf(date.get(position)));
         holder.productTxt.setText(String.valueOf(product.get(position)));
         holder.quantityTxt.setText(String.valueOf(quantity.get(position)));
         holder.unitTxt.setText(String.valueOf(unit.get(position)));
@@ -66,11 +68,12 @@ public class HomeCustomAdapter extends RecyclerView.Adapter<HomeCustomAdapter.My
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView productTxt, quantityTxt, unitTxt;
+        TextView dateTxt, productTxt, quantityTxt, unitTxt;
         LinearLayout homeLayout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            dateTxt = itemView.findViewById(R.id.add_date);
             productTxt = itemView.findViewById(R.id.product_name_txt);
             quantityTxt = itemView.findViewById(R.id.quantity_txt);
             unitTxt = itemView.findViewById(R.id.unit_txt);
@@ -80,6 +83,7 @@ public class HomeCustomAdapter extends RecyclerView.Adapter<HomeCustomAdapter.My
 
     public void deleteItem(int position){
         this.id.remove(position);
+        this.date.remove(position);
         this.product.remove(position);
         this.quantity.remove(position);
         this.unit.remove(position);

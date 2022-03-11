@@ -9,6 +9,9 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 class HomeDatabaseHelper extends SQLiteOpenHelper {
 
     private Context context;
@@ -17,6 +20,7 @@ class HomeDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String TABLE_NAME = "home_inventory";
     private static final String COLUMN_ID = "home_inv_id";
+    private static final String COLUMN_DATE = "home_date";
     private static final String COLUMN_HOME_PRODUCT_NAME = "home_product_name" ;
     private static final String COLUMN_HOME_QUANTITY = "home_quantity";
     private static final String COLUMN_UNIT_OF_MEASURE = "product_uom";
@@ -30,6 +34,7 @@ class HomeDatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String query = "CREATE TABLE " + TABLE_NAME +
                         " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        COLUMN_DATE + " TEXT, " +
                         COLUMN_HOME_PRODUCT_NAME + " TEXT, " +
                         COLUMN_HOME_QUANTITY + " INTEGER, " +
                         COLUMN_UNIT_OF_MEASURE + " TEXT);";
@@ -45,6 +50,7 @@ class HomeDatabaseHelper extends SQLiteOpenHelper {
     void addItem(String name, int quantity, String uom) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
+        cv.put(COLUMN_DATE, getDate());
         cv.put(COLUMN_HOME_PRODUCT_NAME, name);
         cv.put(COLUMN_HOME_QUANTITY, quantity);
         cv.put(COLUMN_UNIT_OF_MEASURE, uom);
@@ -93,6 +99,11 @@ class HomeDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    String getDate(){
+        LocalDate dateObj = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd");
+        return dateObj.format(formatter);
+    }
 
 
 

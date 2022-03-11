@@ -67,7 +67,7 @@ public class ManualAddFragment extends Fragment implements AdapterView.OnItemSel
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        selected_uom = "Count";
+        selected_uom = "count";
     }
 
     // Enable add button when product & quantity input are non-empty.

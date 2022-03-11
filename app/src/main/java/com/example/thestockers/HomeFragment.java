@@ -29,7 +29,7 @@ public class HomeFragment extends Fragment{
     FloatingActionButton scanner_button;
 
     HomeDatabaseHelper myDB;
-    ArrayList<String> entry_id, product_name, quantity, unit;
+    ArrayList<String> entry_id, entry_date, product_name, quantity, unit;
     HomeCustomAdapter customAdapter;
 
     @Override
@@ -50,13 +50,14 @@ public class HomeFragment extends Fragment{
         });
         myDB = new HomeDatabaseHelper(this.getActivity());
         entry_id = new ArrayList<>();
+        entry_date = new ArrayList<>();
         product_name = new ArrayList<>();
         quantity = new ArrayList<>();
         unit = new ArrayList<>();
 
         storeDataInArrays();
 
-        customAdapter = new HomeCustomAdapter(this.getActivity(), this.getActivity(), entry_id, product_name, quantity, unit);
+        customAdapter = new HomeCustomAdapter(this.getActivity(), this.getActivity(), entry_id, entry_date, product_name, quantity, unit);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 
@@ -72,9 +73,10 @@ public class HomeFragment extends Fragment{
         }else{
             while(cursor.moveToNext()){
                 entry_id.add(cursor.getString(0));
-                product_name.add(cursor.getString(1));
-                quantity.add(cursor.getString(2));
-                unit.add(cursor.getString(3));
+                entry_date.add(cursor.getString(1));
+                product_name.add(cursor.getString(2));
+                quantity.add(cursor.getString(3));
+                unit.add(cursor.getString(4));
             }
         }
     }
