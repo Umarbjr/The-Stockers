@@ -48,8 +48,7 @@ import okhttp3.Response;
 public class ReceiptScannerFragment extends Fragment {
     private ImageView capturedImage;
     private Button captureBtn, addAllBtn;
-    public TextView resultTV, progressTV;
-    public ProgressBar progressBar;
+    public TextView resultTV;
     private Bitmap imageBitmap;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     int CAMERA_PERMISSION_CODE = 200;
@@ -64,8 +63,6 @@ public class ReceiptScannerFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_receipt_scanner, container, false);
         capturedImage = view.findViewById(R.id.receipt_logo);
         resultTV = view.findViewById(R.id.scan_resultTV);
-        progressTV = view.findViewById(R.id.progressTV);
-        progressBar = view.findViewById(R.id.progressBar);
         captureBtn = view.findViewById(R.id.capture_button);
         captureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -244,6 +241,9 @@ public class ReceiptScannerFragment extends Fragment {
                 resultText = resultText.concat(itemName.get(n) + " - 1\n");
             }
             resultTV.setText(resultText);
+            if(resultText.trim().length() > 0){
+                addAllBtn.setEnabled(true);
+            }
         }
     }
 }

@@ -15,7 +15,8 @@
             android:id="@+id/settingsTable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF">
+            android:background="#FFFFFF"
+            android:backgroundTint="@color/pastel_green">
 
             <TableRow
                 android:id="@+id/darkModeRow"

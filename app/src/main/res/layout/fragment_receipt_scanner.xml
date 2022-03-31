@@ -33,6 +33,7 @@
             android:layout_marginBottom="10dp"
             android:gravity="center"
             android:text="Scan receipts to add items easily."
+            android:fontFamily="@font/alata"
             android:textAlignment="center"
             android:textColor="@color/black_shade_1"
             android:textStyle="bold" />
@@ -48,6 +49,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="30dp"
             android:text="Capture Image"
+            android:fontFamily="@font/alata"
             android:textAllCaps="false"
             android:background="@drawable/custom_button"
             app:backgroundTint="@color/purple_200"
@@ -63,36 +65,12 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="30dp"
+            android:enabled="false"
             android:text="Add All To Inventory"
+            android:fontFamily="@font/alata"
             android:textAllCaps="false"
             android:background="@drawable/custom_button"
             app:backgroundTint="@color/purple_200"
             android:textColor="@color/black_shade_1"/>
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:visibility="gone"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="28dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/progressTV"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/progressTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="scanning receipt..."
-            android:visibility="gone"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
