@@ -27,11 +27,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -50,6 +55,7 @@ public class ReceiptScannerFragment extends Fragment {
     int CAMERA_PERMISSION_CODE = 200;
     int FILE_WRITE_PERMISSION = 300;
     String scanResult;
+    List<String> itemName;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,7 +81,17 @@ public class ReceiptScannerFragment extends Fragment {
         addAllBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                HomeDatabaseHelper db = new HomeDatabaseHelper(getActivity());
+                if(itemName.size() > 0) {
+                    for (int n = 0; n < itemName.size(); ++n) {
+                        // Add all scanned items to database
+                        db.addItem(itemName.get(n), 1, "count");
+                        //getActivity().onBackPressed();
+                    }
+                    Toast.makeText(getActivity(), "Added successfully.", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getActivity(), "No item(s) scanned.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         return view;
@@ -126,11 +142,11 @@ public class ReceiptScannerFragment extends Fragment {
         receiptFile.createNewFile();
 
         //Convert bitmap to byte array
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
-        byte[] bitmapData = out.toByteArray();
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        byte[] bitmapData = bytes.toByteArray();
 
-        //write the bytes in file
+        //write bytes into file
         try {
             FileOutputStream fos = new FileOutputStream(receiptFile);
             fos.write(bitmapData);
@@ -142,10 +158,10 @@ public class ReceiptScannerFragment extends Fragment {
         return receiptFile;
     }
 
-
+    //Establish https connection to API server
     public void JavaReceiptOcr(File imageFile) throws Exception {
         final MediaType MEDIA_TYPE_JPEG = MediaType.parse("image/jpeg");
-        System.out.println("=== Java Receipt OCR ===");
+        //System.out.println("=== Java Receipt OCR ===");
         try{
             OkHttpClient client = new OkHttpClient();
             RequestBody requestBody = new MultipartBody.Builder()
@@ -165,8 +181,9 @@ public class ReceiptScannerFragment extends Fragment {
         Response response = client.newCall(request).execute();
         if(!response.isSuccessful()) throw new IOException("Unexpected code "+ response);
             scanResult = response.body().string();
-            System.out.println("Scanned Result >> "+ response.body().string());
+            //System.out.println("Scanned Result >> "+ scanResult);
         } catch (IOException e) {
+            Toast.makeText(getActivity(), "Failed to scan." + e, Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
@@ -175,28 +192,37 @@ public class ReceiptScannerFragment extends Fragment {
         new fileFromBitmap().execute();
     }
 
-    /*public void ExtractResult(){
-        //String items[];
-        Gson gson = new Gson();
-        ReceiptResponseParser responseResult = gson.fromJson(scanResult, ReceiptResponseParser.class);
-        System.out.println("Items List >> "+responseResult.getReceiptItems());
-    }*/
+    public void ExtractResult(String jsonString) throws JSONException {
+        itemName = new ArrayList<String>();
+        final JSONObject obj = new JSONObject(jsonString);
+        final JSONArray receipt = obj.getJSONArray("receipts");
+        final int receipt_len = receipt.length();
+        for(int i = 0; i < receipt_len ; ++i){
+            JSONObject item = receipt.getJSONObject(i);
+            JSONArray itemList = item.getJSONArray("items");
+            final int item_len = itemList.length();
+            for(int j = 0 ; j < item_len ; ++j) {
+                final JSONObject itemData = itemList.getJSONObject(j);
+                itemName.add(itemData.getString("description"));
+            }
+        }
+    }
 
-
+    //This class handles API calls as background task
     class fileFromBitmap extends AsyncTask<Void, Integer, String> {
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressBar.setVisibility(View.VISIBLE);
-            progressTV.setVisibility(View.VISIBLE);
         }
 
         @Override
         protected String doInBackground(Void... params) {
-            //send file to API server to scan
             try {
-                JavaReceiptOcr(BitmapToJPEG(imageBitmap));
+                //Convert bitmap to File
+                File file = BitmapToJPEG(imageBitmap);
+                //Send file to API
+                JavaReceiptOcr(file);
             }catch(Exception e) {
                 e.printStackTrace();
             }
@@ -206,9 +232,18 @@ public class ReceiptScannerFragment extends Fragment {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            //ExtractResult();
-            resultTV.setText(scanResult);
-            scanResult="";
+            try {
+                // Extract product name from json string
+                ExtractResult(scanResult);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            // Build string to display result
+            String resultText = " ";
+            for (int n = 0; n < itemName.size(); ++n){
+                resultText = resultText.concat(itemName.get(n) + " - 1\n");
+            }
+            resultTV.setText(resultText);
         }
     }
 }
