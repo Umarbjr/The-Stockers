@@ -54,6 +54,8 @@ public class HomeFragment extends Fragment{
         product_name = new ArrayList<>();
         quantity = new ArrayList<>();
         unit = new ArrayList<>();
+        // Query the remote db
+        RemoteDBHelper.populateDB(myDB);
 
         storeDataInArrays();
 

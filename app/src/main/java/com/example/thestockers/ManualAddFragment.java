@@ -37,6 +37,10 @@ public class ManualAddFragment extends Fragment implements AdapterView.OnItemSel
             @Override
             public void onClick(View v) {
                 HomeDatabaseHelper myDB = new HomeDatabaseHelper(ManualAddFragment.this.getActivity());
+                System.out.println("Add String: " + productName_manAdd.getText().toString().trim());
+//                RemoteDBHelper.insertDB("randomid", "randomdate",
+//                        productName_manAdd.getText().toString(),
+//                        quantity_manAdd.getText().toString(), selected_uom);
                 myDB.addItem(productName_manAdd.getText().toString().trim(),
                         Integer.valueOf(quantity_manAdd.getText().toString().trim()), selected_uom);
                 // clear editTexts & default spinner
