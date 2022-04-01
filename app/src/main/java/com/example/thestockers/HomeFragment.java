@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -27,6 +29,8 @@ public class HomeFragment extends Fragment{
 
     RecyclerView recyclerView;
     FloatingActionButton scanner_button;
+    ImageView emptyImg;
+    TextView emptyTV;
 
     HomeDatabaseHelper myDB;
     ArrayList<String> entry_id, entry_date, product_name, quantity, unit;
@@ -38,6 +42,8 @@ public class HomeFragment extends Fragment{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         // Find recycler view and scanner float button
+        emptyImg = view.findViewById(R.id.empty_img);
+        emptyTV = view.findViewById(R.id.empty_tv);
         recyclerView = view.findViewById(R.id.home_recyclerView);
         scanner_button = view.findViewById(R.id.scan_to_add_button);
         // When scanner button is clicked, start Scanner Activity
@@ -71,7 +77,8 @@ public class HomeFragment extends Fragment{
     void storeDataInArrays(){
         Cursor cursor = myDB.readAllData();
         if(cursor.getCount() == 0) {
-            Toast.makeText(this.getActivity(), "No data.", Toast.LENGTH_SHORT).show();
+            emptyImg.setVisibility(View.VISIBLE);
+            emptyTV.setVisibility(View.VISIBLE);
         }else{
             while(cursor.moveToNext()){
                 entry_id.add(cursor.getString(0));
