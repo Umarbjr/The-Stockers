@@ -56,7 +56,7 @@ public class ShoppingListFragment extends Fragment {
     void storeDataInArrays(){
         Cursor cursor = myDB.readAllData();
         if(cursor.getCount() == 0){
-            Toast.makeText(this.getActivity(), "No data.", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this.getActivity(), "No data.", Toast.LENGTH_SHORT).show();
         }
         else{
             while(cursor.moveToNext()){

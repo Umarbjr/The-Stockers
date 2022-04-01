@@ -15,6 +15,9 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -61,7 +64,7 @@ public class HomeFragment extends Fragment{
         quantity = new ArrayList<>();
         unit = new ArrayList<>();
         // Query the remote db
-        RemoteDBHelper.populateDB(myDB);
+        // RemoteDBHelper.populateDB(myDB);
 
         storeDataInArrays();
 
@@ -71,6 +74,8 @@ public class HomeFragment extends Fragment{
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeItem(customAdapter));
         itemTouchHelper.attachToRecyclerView(recyclerView);
+
+        setHasOptionsMenu(true);
         return view;
     }
 
@@ -88,6 +93,10 @@ public class HomeFragment extends Fragment{
                 unit.add(cursor.getString(4));
             }
         }
+    }
+
+    public HomeDatabaseHelper getDB(){
+        return myDB;
     }
 
     public class SwipeItem extends ItemTouchHelper.SimpleCallback {
@@ -140,4 +149,19 @@ public class HomeFragment extends Fragment{
         }
     }
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.top_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    // Query remote db to refresh when refresh button is pressed.
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.refresh_btn){
+            RemoteDBHelper.populateDB(myDB);
+            Toast.makeText(getActivity(), "Database Up-to-date", Toast.LENGTH_SHORT).show();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
