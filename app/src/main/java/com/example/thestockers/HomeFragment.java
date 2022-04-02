@@ -115,6 +115,7 @@ public class HomeFragment extends Fragment{
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             int pos = viewHolder.getBindingAdapterPosition();
             HomeDatabaseHelper db = new HomeDatabaseHelper(HomeFragment.this.getActivity());
+            RemoteDBHelper.deleteDB(product_name.get(pos));
             db.deleteOneRow(entry_id.get(pos));
             this.adapter.deleteItem(pos);
         }

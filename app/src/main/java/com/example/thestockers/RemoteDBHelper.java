@@ -64,6 +64,24 @@ public class RemoteDBHelper {
         }).start();
     }
 
+    static void deleteDB(String name) {
+        RequestBody body = RequestBody.create(name, MediaType.get("text/x-markdown"));
+        Request request = new Request.Builder()
+                .url("https://ucx0ybjsh4.execute-api.us-west-1.amazonaws.com/delete?table=inventory&col=name")
+                .delete(body)
+                .build();
+        new Thread(() -> {
+            try(Response response = client.newCall(request).execute()) {
+                System.out.println("Delete response: " + response.body().string());
+//                System.out.println("Response in helper: " + queryTableQueue.peek());
+
+            }
+            catch(Exception e) {
+                System.out.println("Error in execution: " + e.toString());
+            }
+        }).start();
+    }
+
     // Parses JSON returns from the StockerAPI
     static private List<List<String>> decodeJSON(Response response) throws IOException {
         // Converting the response to a string and removing the outer brackets
