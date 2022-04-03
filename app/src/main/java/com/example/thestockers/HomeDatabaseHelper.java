@@ -61,9 +61,9 @@ class HomeDatabaseHelper extends SQLiteOpenHelper {
         long result = db.insert(TABLE_NAME, null, cv);
         if(result == -1){
             Toast.makeText(context, "Failed" , Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(context, "Added Successfully" , Toast.LENGTH_SHORT).show();
-        }
+        }/*else{
+            //Toast.makeText(context, "Added Successfully" , Toast.LENGTH_SHORT).show();
+        }*/
     }
 
     void addItems(List<List<String>> dataList) {
@@ -77,9 +77,9 @@ class HomeDatabaseHelper extends SQLiteOpenHelper {
             long result = db.insert(TABLE_NAME, null, cv);
             if(result == -1){
                 Toast.makeText(context, "Failed" , Toast.LENGTH_SHORT).show();
-            }else{
+            }/*else{
                 Toast.makeText(context, "Added Successfully" , Toast.LENGTH_SHORT).show();
-            }
+            }*/
         }
     }
 

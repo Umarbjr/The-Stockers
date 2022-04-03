@@ -7,13 +7,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,11 +17,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment{
+public class HomeFragment extends Fragment {
 
     RecyclerView recyclerView;
     FloatingActionButton scanner_button;
@@ -95,10 +96,6 @@ public class HomeFragment extends Fragment{
         }
     }
 
-    public HomeDatabaseHelper getDB(){
-        return myDB;
-    }
-
     public class SwipeItem extends ItemTouchHelper.SimpleCallback {
         HomeCustomAdapter adapter;
         public SwipeItem(HomeCustomAdapter itemAdapter) {
@@ -155,11 +152,16 @@ public class HomeFragment extends Fragment{
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-    // Query remote db to refresh when refresh button is pressed.
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.refresh_btn){
+            // Query remote db to refresh when refresh button is pressed.
             RemoteDBHelper.populateDB(myDB);
+
+            //Refresh fragment for result
+            ((MainActivity)getActivity()).switchTab(R.id.homeFragment);
+
             Toast.makeText(getActivity(), "Database Up-to-date", Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);

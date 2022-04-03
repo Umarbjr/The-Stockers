@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.google.gson.*;
-
 import okhttp3.*;
 
 public class RemoteDBHelper {

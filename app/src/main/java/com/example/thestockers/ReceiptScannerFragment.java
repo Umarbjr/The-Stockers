@@ -3,6 +3,8 @@ package com.example.thestockers;
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
+import static java.util.Objects.isNull;
+
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
@@ -85,10 +87,10 @@ public class ReceiptScannerFragment extends Fragment {
                         db.addItem(itemName.get(n), 1, "count");
                         //getActivity().onBackPressed();
                     }
-                    Toast.makeText(getActivity(), "Added successfully.", Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(getActivity(), "No item(s) scanned.", Toast.LENGTH_SHORT).show();
                 }
+                Toast.makeText(getActivity(), "Added successfully.", Toast.LENGTH_SHORT).show();
             }
         });
         return view;
@@ -179,6 +181,7 @@ public class ReceiptScannerFragment extends Fragment {
         if(!response.isSuccessful()) throw new IOException("Unexpected code "+ response);
             scanResult = response.body().string();
             //System.out.println("Scanned Result >> "+ scanResult);
+
         } catch (IOException e) {
             Toast.makeText(getActivity(), "Failed to scan." + e, Toast.LENGTH_SHORT).show();
             e.printStackTrace();
@@ -189,19 +192,28 @@ public class ReceiptScannerFragment extends Fragment {
         new fileFromBitmap().execute();
     }
 
+    // TODO: Fix exception handling without app crash!
     public void ExtractResult(String jsonString) throws JSONException {
         itemName = new ArrayList<String>();
         final JSONObject obj = new JSONObject(jsonString);
-        final JSONArray receipt = obj.getJSONArray("receipts");
-        final int receipt_len = receipt.length();
-        for(int i = 0; i < receipt_len ; ++i){
-            JSONObject item = receipt.getJSONObject(i);
-            JSONArray itemList = item.getJSONArray("items");
-            final int item_len = itemList.length();
-            for(int j = 0 ; j < item_len ; ++j) {
-                final JSONObject itemData = itemList.getJSONObject(j);
-                itemName.add(itemData.getString("description"));
+        if (!isNull(obj)) {
+            final JSONArray receipt = obj.getJSONArray("receipts");
+            try {
+                final int receipt_len = receipt.length();
+                for (int i = 0; i < receipt_len; ++i) {
+                    JSONObject item = receipt.getJSONObject(i);
+                    JSONArray itemList = item.getJSONArray("items");
+                    final int item_len = itemList.length();
+                    for (int j = 0; j < item_len; ++j) {
+                        final JSONObject itemData = itemList.getJSONObject(j);
+                        itemName.add(itemData.getString("description"));
+                    }
+                }
+            } catch (NullPointerException e) {
+                Toast.makeText(getActivity(), "Cannot detect receipt items, try again!", Toast.LENGTH_SHORT).show();
             }
+        } else {
+            Toast.makeText(getActivity(), "Scan error, try again!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -233,6 +245,7 @@ public class ReceiptScannerFragment extends Fragment {
                 // Extract product name from json string
                 ExtractResult(scanResult);
             } catch (JSONException e) {
+                Toast.makeText(getActivity(), "Scan error, try again!", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
             // Build string to display result
@@ -241,6 +254,7 @@ public class ReceiptScannerFragment extends Fragment {
                 resultText = resultText.concat(itemName.get(n) + " - 1\n");
             }
             resultTV.setText(resultText);
+            //resultTV.setText("Milk - 1\nCheddar Cheese - 1\n Smoked Bacon - 1\n Frozen Pizza - 1\nPepsi - 1\nChicken Thighs - 1\nBrocolli - 1\nBell Peppers - 1");
             if(resultText.trim().length() > 0){
                 addAllBtn.setEnabled(true);
             }

@@ -70,7 +70,7 @@
             android:fontFamily="@font/alata"
             android:textAllCaps="false"
             android:background="@drawable/custom_button"
-            app:backgroundTint="@color/purple_200"
+            android:backgroundTint="@color/purple_200"
             android:textColor="@color/black_shade_1"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

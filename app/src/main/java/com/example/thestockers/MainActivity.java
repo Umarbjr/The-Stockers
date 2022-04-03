@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -25,11 +26,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
+    BottomNavigationView bottomNav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        BottomNavigationView bottomNav = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
+        //BottomNavigationView bottomNav = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
+        bottomNav = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
         bottomNav.setItemIconTintList(null);
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragment);
         NavController navController = navHostFragment.getNavController();
@@ -51,5 +54,9 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == 1){
             recreate();
         }
+    }
+
+    public void switchTab(int tabID){
+        bottomNav.setSelectedItemId(tabID);
     }
 }
