@@ -53,11 +53,12 @@ class HomeDatabaseHelper extends SQLiteOpenHelper {
     void addItem(String name, int quantity, String uom) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COLUMN_DATE, getDate());
+        String date = getDate();
+        cv.put(COLUMN_DATE, date);
         cv.put(COLUMN_HOME_PRODUCT_NAME, name);
         cv.put(COLUMN_HOME_QUANTITY, quantity);
         cv.put(COLUMN_UNIT_OF_MEASURE, uom);
-        RemoteDBHelper.insertDB("randomid", "randomdate", name, String.valueOf(quantity), uom);
+        RemoteDBHelper.insertDB("randomid", date, name, String.valueOf(quantity), uom);
         long result = db.insert(TABLE_NAME, null, cv);
         if(result == -1){
             Toast.makeText(context, "Failed" , Toast.LENGTH_SHORT).show();
