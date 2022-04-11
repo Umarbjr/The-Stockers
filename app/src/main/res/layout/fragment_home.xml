@@ -13,10 +13,8 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/scan_to_add_button"
@@ -26,7 +24,7 @@
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/ic_add"
-        android:layout_marginBottom="58dp"
+        android:layout_marginBottom="78dp"
         app:layout_constraintBottom_toBottomOf="@id/home_recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:backgroundTint="@color/purple_500"

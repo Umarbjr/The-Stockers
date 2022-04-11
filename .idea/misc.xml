@@ -15,6 +15,7 @@
         <entry key="..\:/Users/leong/AndroidStudioProjects/TheStockers/app/src/main/res/drawable/ic_settings.xml" value="0.10462962962962963" />
         <entry key="..\:/Users/leong/AndroidStudioProjects/TheStockers/app/src/main/res/drawable/ic_shopping_list.xml" value="0.10462962962962963" />
         <entry key="..\:/Users/leong/AndroidStudioProjects/TheStockers/app/src/main/res/drawable/ic_weekly_summary.xml" value="0.2875" />
+        <entry key="..\:/Users/leong/AndroidStudioProjects/TheStockers/app/src/main/res/drawable/summary.xml" value="0.290625" />
         <entry key="..\:/Users/leong/AndroidStudioProjects/TheStockers/app/src/main/res/layout/activity_home_add_manually.xml" value="0.14427083333333332" />
         <entry key="..\:/Users/leong/AndroidStudioProjects/TheStockers/app/src/main/res/layout/activity_home_update.xml" value="0.25833333333333336" />
         <entry key="..\:/Users/leong/AndroidStudioProjects/TheStockers/app/src/main/res/layout/activity_main.xml" value="0.16" />
@@ -31,7 +32,7 @@
         <entry key="..\:/Users/leong/AndroidStudioProjects/TheStockers/app/src/main/res/layout/fragment_scanner_manual_add.xml" value="0.178125" />
         <entry key="..\:/Users/leong/AndroidStudioProjects/TheStockers/app/src/main/res/layout/fragment_settings.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/leong/AndroidStudioProjects/TheStockers/app/src/main/res/layout/fragment_shopping_list.xml" value="0.14673913043478262" />
-        <entry key="..\:/Users/leong/AndroidStudioProjects/TheStockers/app/src/main/res/layout/fragment_summary.xml" value="0.14673913043478262" />
+        <entry key="..\:/Users/leong/AndroidStudioProjects/TheStockers/app/src/main/res/layout/fragment_summary.xml" value="0.264" />
         <entry key="..\:/Users/leong/AndroidStudioProjects/TheStockers/app/src/main/res/layout/home_fragment.xml" value="0.13196555217831812" />
         <entry key="..\:/Users/leong/AndroidStudioProjects/TheStockers/app/src/main/res/layout/home_row.xml" value="0.264" />
         <entry key="..\:/Users/leong/AndroidStudioProjects/TheStockers/app/src/main/res/layout/item_row.xml" value="0.16145833333333334" />
@@ -39,6 +40,8 @@
         <entry key="..\:/Users/leong/AndroidStudioProjects/TheStockers/app/src/main/res/layout/shopping_list_fragment.xml" value="0.13196555217831812" />
         <entry key="..\:/Users/leong/AndroidStudioProjects/TheStockers/app/src/main/res/layout/shopping_row.xml" value="0.16145833333333334" />
         <entry key="..\:/Users/leong/AndroidStudioProjects/TheStockers/app/src/main/res/layout/summary_fragment.xml" value="0.13196555217831812" />
+        <entry key="..\:/Users/leong/AndroidStudioProjects/TheStockers/app/src/main/res/layout/summary_group.xml" value="0.23958333333333334" />
+        <entry key="..\:/Users/leong/AndroidStudioProjects/TheStockers/app/src/main/res/layout/summary_group_item.xml" value="0.23958333333333334" />
         <entry key="..\:/Users/leong/AndroidStudioProjects/TheStockers/app/src/main/res/menu/bottom_menu.xml" value="0.2713541666666667" />
         <entry key="..\:/Users/leong/AndroidStudioProjects/TheStockers/app/src/main/res/menu/bottom_navigation.xml" value="0.2671794871794872" />
         <entry key="..\:/Users/leong/AndroidStudioProjects/TheStockers/app/src/main/res/menu/scanner_top_menu.xml" value="0.178125" />
