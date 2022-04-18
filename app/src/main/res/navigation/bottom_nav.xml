@@ -23,6 +23,6 @@
     <fragment
         android:id="@+id/summaryFragment"
         android:name="com.example.thestockers.SummaryFragment"
-        android:label="Weekly Summary"
+        android:label="Analysis"
         tools:layout="@layout/fragment_summary" />
 </navigation>

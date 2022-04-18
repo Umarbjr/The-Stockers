@@ -99,7 +99,7 @@ public class HomeFragment extends Fragment {
     public class SwipeItem extends ItemTouchHelper.SimpleCallback {
         HomeCustomAdapter adapter;
         public SwipeItem(HomeCustomAdapter itemAdapter) {
-            super(0, ItemTouchHelper.RIGHT);
+            super(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT);
             this.adapter = itemAdapter;
         }
 
@@ -121,29 +121,53 @@ public class HomeFragment extends Fragment {
         public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView,
                                 @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY,
                                 int actionState, boolean isCurrentlyActive) {
-            int itemHeight = viewHolder.itemView.getBottom() - viewHolder.itemView.getTop();
+                double rowMarginBottom = 3.4*3;
+                int itemHeight = viewHolder.itemView.getBottom() - viewHolder.itemView.getTop();
+            //Swiped right
+            if(dX > 0) {
+                // Set red swipe background
+                final ColorDrawable redBackground = new ColorDrawable(Color.parseColor("#FF0000"));
+                redBackground.setBounds(0, viewHolder.itemView.getTop(),
+                        (int) (viewHolder.itemView.getLeft() + dX), (int)(viewHolder.itemView.getBottom() - rowMarginBottom));
+                redBackground.draw(c);
 
-            // Set red swipe background
-            final ColorDrawable background = new ColorDrawable(Color.parseColor("#FF0000"));
-            background.setBounds(0, viewHolder.itemView.getTop(),
-                    (int) (viewHolder.itemView.getLeft() + dX), viewHolder.itemView.getBottom());
-            background.draw(c);
+                // Calculate position of delete icon
+                Drawable icon1 = ContextCompat.getDrawable(getActivity(), R.drawable.ic_delete);
+                int iconHeight = icon1.getIntrinsicHeight();
+                int iconWidth = icon1.getIntrinsicWidth();
+                int iconTop = viewHolder.itemView.getTop() + (itemHeight - iconHeight) / 2;
+                int iconMargin = (itemHeight - iconHeight) / 2;
+                int iconLeft1 = viewHolder.itemView.getLeft() + iconMargin;
+                int iconRight1 = viewHolder.itemView.getLeft() + iconMargin + iconWidth;
+                int iconBottom = iconTop + iconHeight;
 
-            // Calculate position of delete icon
-            Drawable icon = ContextCompat.getDrawable(getActivity(), R.drawable.ic_delete);
-            int iconHeight = icon.getIntrinsicHeight();
-            int iconWidth = icon.getIntrinsicWidth();
-            int iconTop = viewHolder.itemView.getTop() + (itemHeight-iconHeight) / 2;
-            int iconMargin = (itemHeight - iconHeight) / 2;
-            int iconLeft = viewHolder.itemView.getLeft() +  iconMargin;
-            int iconRight = viewHolder.itemView.getLeft() + iconMargin + iconWidth;
-            int iconBottom = iconTop + iconHeight;
+                //Draw delete icon
+                icon1.setBounds(iconLeft1, iconTop, iconRight1, iconBottom);
+                icon1.draw(c);
+            }
 
-            //Draw delete icon
-            icon.setBounds(iconLeft, iconTop, iconRight, iconBottom);
-            icon.draw(c);
+            //Swiped left
+            if (dX < 0) {
+                final ColorDrawable greenBackground = new ColorDrawable(Color.parseColor("#76ff7a"));
+                greenBackground.setBounds(0, viewHolder.itemView.getTop(),
+                        viewHolder.itemView.getRight(), (int)(viewHolder.itemView.getBottom() - rowMarginBottom));
+                greenBackground.draw(c);
 
-            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+                // Calculate position of consumed icon
+                Drawable icon2 = ContextCompat.getDrawable(getActivity(), R.drawable.consumed);
+                int iconHeight = icon2.getIntrinsicHeight();
+                int iconWidth = icon2.getIntrinsicWidth();
+                int iconTop = viewHolder.itemView.getTop() + (itemHeight - iconHeight) / 2;
+                int iconMargin = (itemHeight - iconHeight) / 2;
+                int iconLeft2 = viewHolder.itemView.getRight() - iconMargin - iconWidth;
+                int iconRight2 = viewHolder.itemView.getRight() - iconMargin;
+                int iconBottom = iconTop + iconHeight;
+
+                //Draw delete icon
+                icon2.setBounds(iconLeft2, iconTop, iconRight2, iconBottom);
+                icon2.draw(c);
+            }
+                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
         }
     }
 
