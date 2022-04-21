@@ -66,6 +66,7 @@ public class HomeUpdateActivity extends AppCompatActivity {
                 HomeDatabaseHelper myDB = new HomeDatabaseHelper(HomeUpdateActivity.this);
                 product = product_input.getText().toString().trim();
                 quantity = quantity_input.getText().toString().trim();
+                RemoteDBHelper.updateInv(product, quantity, unit, id);
                 myDB.updateData(id, product, quantity, unit);
                 finish();
             }

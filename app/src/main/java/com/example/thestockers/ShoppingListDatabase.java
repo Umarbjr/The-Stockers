@@ -63,6 +63,8 @@ public class ShoppingListDatabase extends SQLiteOpenHelper {
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
         }
         else{
+              // Will add this back in when the lists are more functional
+//            RemoteDBHelper.insertList(String.valueOf(result), title);
             Toast.makeText(context, "Added Successfully", Toast.LENGTH_SHORT).show();
         }
     }

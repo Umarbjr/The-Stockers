@@ -58,20 +58,21 @@ class HomeDatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_HOME_PRODUCT_NAME, name);
         cv.put(COLUMN_HOME_QUANTITY, quantity);
         cv.put(COLUMN_UNIT_OF_MEASURE, uom);
-        RemoteDBHelper.insertDB("randomid", date, name, String.valueOf(quantity), uom);
         long result = db.insert(TABLE_NAME, null, cv);
         if(result == -1){
             Toast.makeText(context, "Failed" , Toast.LENGTH_SHORT).show();
-        }/*else{
+        }else{
+            RemoteDBHelper.insertDB(String.valueOf(result), date, name, String.valueOf(quantity), uom);
             //Toast.makeText(context, "Added Successfully" , Toast.LENGTH_SHORT).show();
-        }*/
+        }
     }
 
     void addItems(List<List<String>> dataList) {
         for(int i = 0; i < dataList.size(); i++) {
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues cv = new ContentValues();
-            cv.put(COLUMN_DATE, getDate());
+            cv.put(COLUMN_ID, dataList.get(i).get(0));
+            cv.put(COLUMN_DATE, dataList.get(i).get(1));
             cv.put(COLUMN_HOME_PRODUCT_NAME, dataList.get(i).get(2));
             cv.put(COLUMN_HOME_QUANTITY, dataList.get(i).get(3));
             cv.put(COLUMN_UNIT_OF_MEASURE, dataList.get(i).get(4));
@@ -116,6 +117,9 @@ class HomeDatabaseHelper extends SQLiteOpenHelper {
         long result = db.delete(TABLE_NAME, " home_inv_id=?", new String[]{row_id});
         if(result == -1){
             Toast.makeText(context, "Failed to Delete" , Toast.LENGTH_SHORT).show();
+        }else{
+            RemoteDBHelper.deleteDB(String.valueOf(row_id));
+            Toast.makeText(context, "Deleted" , Toast.LENGTH_SHORT).show();
         }
     }
 

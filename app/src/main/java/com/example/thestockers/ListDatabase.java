@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import java.util.List;
+
 public class ListDatabase extends SQLiteOpenHelper {
 
     private Context context;
@@ -19,6 +21,8 @@ public class ListDatabase extends SQLiteOpenHelper {
     private static final String COLUMN_PRODUCT_NAME = "product_name";
     private static final String COLUMN_GROUP_ID = "group_id";
     private static final String COLUMN_QUANTITY = "quantity";
+
+    private boolean LOCKED = false;
 
     public ListDatabase(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -47,6 +51,7 @@ public class ListDatabase extends SQLiteOpenHelper {
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
         }
         else{
+
             Toast.makeText(context, "Added Successfully", Toast.LENGTH_SHORT).show();
         }
     }
@@ -61,4 +66,10 @@ public class ListDatabase extends SQLiteOpenHelper {
         }
         return cursor;
     }
+
+    void unlock() { LOCKED = false; }
+
+    void lock() { LOCKED = true; }
+
+    boolean isLocked() { return LOCKED; }
 }

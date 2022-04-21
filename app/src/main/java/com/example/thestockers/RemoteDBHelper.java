@@ -21,7 +21,7 @@ public class RemoteDBHelper {
             try(Response response = client.newCall(request).execute()) {
 //                System.out.println("Success Response: " + response.body().string());
                 List<List<String>> decodedResult = decodeJSON(response);
-//                System.out.println("Response in helper: " + queryTableQueue.peek());
+//                System.out.println("Response in helper: " + decodedResult);
                 long timerStart = System.currentTimeMillis();
                 while(myDB.isLocked()) {
                     if(System.currentTimeMillis() - timerStart > 10000) {
@@ -110,5 +110,47 @@ public class RemoteDBHelper {
         }
         // Return
         return finalList;
+    }
+
+    // Inserts a list into the list table
+    static void insertList(String id, String name) {
+        String bodyData = id + "," + name;
+        System.out.println("Body data: " + bodyData);
+        RequestBody body = RequestBody.create(bodyData, MediaType.get("text/x-markdown"));
+        Request request = new Request.Builder()
+                .url("https://ucx0ybjsh4.execute-api.us-west-1.amazonaws.com/insert?table=lists")
+                .post(body)
+                .build();
+        new Thread(() -> {
+            try(Response response = client.newCall(request).execute()) {
+                System.out.println("Insert response: " + response.body().string());
+//                System.out.println("Response in helper: " + queryTableQueue.peek());
+
+            }
+            catch(Exception e) {
+                System.out.println("Error in execution: " + e.toString());
+            }
+        }).start();
+    }
+
+    // Updates the inventory
+    static void updateInv(String name, String quantity, String uom, String rowId) {
+        String bodyData = name + "," + quantity + "," + uom + "," + rowId;
+        System.out.println("Body data: " + bodyData);
+        RequestBody body = RequestBody.create(bodyData, MediaType.get("text/x-markdown"));
+        Request request = new Request.Builder()
+                .url("https://ucx0ybjsh4.execute-api.us-west-1.amazonaws.com/update?table=inventory")
+                .put(body)
+                .build();
+        new Thread(() -> {
+            try(Response response = client.newCall(request).execute()) {
+                System.out.println("Insert response: " + response.body().string());
+//                System.out.println("Response in helper: " + queryTableQueue.peek());
+
+            }
+            catch(Exception e) {
+                System.out.println("Error in execution: " + e.toString());
+            }
+        }).start();
     }
 }
