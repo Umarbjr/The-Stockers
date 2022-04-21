@@ -21,7 +21,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,7 +28,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class HomeFragment extends Fragment {
 
@@ -129,9 +127,12 @@ public class HomeFragment extends Fragment {
             if(direction == ItemTouchHelper.RIGHT){
                 waste = waste + goneQty;
                 waste_consumed[0] = waste;
+                Toast.makeText(getActivity(), "Wasted D:" , Toast.LENGTH_SHORT).show();
+
             }else if(direction == ItemTouchHelper.LEFT){
                 consumed = consumed + goneQty;
                 waste_consumed[1] = consumed;
+                Toast.makeText(getActivity(), "Consumed :D" , Toast.LENGTH_SHORT).show();
             }
         }
 

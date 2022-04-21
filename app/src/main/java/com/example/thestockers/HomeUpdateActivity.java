@@ -76,6 +76,7 @@ public class HomeUpdateActivity extends AppCompatActivity {
             public void onClick(View v) {
                 HomeDatabaseHelper db = new HomeDatabaseHelper(HomeUpdateActivity.this);
                 db.deleteOneRow(id);
+                Toast.makeText(HomeUpdateActivity.this, "Deleted" , Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
