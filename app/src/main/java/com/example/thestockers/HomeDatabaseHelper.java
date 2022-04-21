@@ -119,7 +119,6 @@ class HomeDatabaseHelper extends SQLiteOpenHelper {
             Toast.makeText(context, "Failed to Delete" , Toast.LENGTH_SHORT).show();
         }else{
             RemoteDBHelper.deleteDB(String.valueOf(row_id));
-            Toast.makeText(context, "Deleted" , Toast.LENGTH_SHORT).show();
         }
     }
 
