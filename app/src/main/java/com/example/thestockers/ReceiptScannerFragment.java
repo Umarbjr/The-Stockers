@@ -272,6 +272,7 @@ public class ReceiptScannerFragment extends Fragment {
             }
             resultTV.setText(resultText);
             //resultTV.setText("Milk - 1\nCheddar Cheese - 1\n Smoked Bacon - 1\n Frozen Pizza - 1\nPepsi - 1\nChicken Thighs - 1\nBrocolli - 1\nBell Peppers - 1");
+            //priceTV.setText("$25.98");
             if(resultText.trim().length() > 0){
                 addAllBtn.setEnabled(true);
             }

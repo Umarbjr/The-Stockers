@@ -35,6 +35,9 @@ public class HomeFragment extends Fragment {
     FloatingActionButton scanner_button;
     ImageView emptyImg;
     TextView emptyTV;
+    int waste_consumed[] = new int[2];
+    int waste = 10;
+    int consumed = 10;
 
     HomeDatabaseHelper myDB;
     ArrayList<String> entry_id, entry_date, product_name, quantity, unit;
@@ -111,11 +114,23 @@ public class HomeFragment extends Fragment {
 
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            // delete from db
+            int goneQty;
             int pos = viewHolder.getBindingAdapterPosition();
             HomeDatabaseHelper db = new HomeDatabaseHelper(HomeFragment.this.getActivity());
+            goneQty = Integer.parseInt(quantity.get(pos));
             RemoteDBHelper.deleteDB(product_name.get(pos));
             db.deleteOneRow(entry_id.get(pos));
             this.adapter.deleteItem(pos);
+
+            //store waste consumption quantity
+            if(direction == ItemTouchHelper.RIGHT){
+                waste = waste + goneQty;
+                waste_consumed[0] = waste;
+            }else if(direction == ItemTouchHelper.LEFT){
+                consumed = consumed + goneQty;
+                waste_consumed[1] = consumed;
+            }
         }
 
         @Override
@@ -150,6 +165,7 @@ public class HomeFragment extends Fragment {
 
             //Swiped left
             if (dX < 0) {
+                // Set green swipe background
                 final ColorDrawable greenBackground = new ColorDrawable(Color.parseColor("#21B6A8"));
                 greenBackground.setBounds(0, (int)(viewHolder.itemView.getTop() + rowMarginTop),
                         viewHolder.itemView.getRight(), (int)(viewHolder.itemView.getBottom() - rowMarginBottom));
@@ -171,6 +187,7 @@ public class HomeFragment extends Fragment {
             }
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
         }
+
     }
 
     @Override
@@ -193,4 +210,9 @@ public class HomeFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public int[] getWasteConsumptionData(){
+        return waste_consumed;
+    }
+
 }

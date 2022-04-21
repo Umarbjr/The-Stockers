@@ -22,16 +22,16 @@
             android:id="@+id/darkModeRow"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingStart="20dp"
+            android:paddingStart="30dp"
             android:paddingTop="10dp"
-            android:paddingEnd="20dp"
+            android:paddingEnd="30dp"
             android:paddingBottom="10dp">
 
             <TextView
                 android:id="@+id/darkModeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:fontFamily="@font/alata"
                 android:text="Dark Mode"
                 android:textSize="20sp" />
@@ -42,15 +42,14 @@
                 android:layout_height="wrap_content"/>
 
         </TableRow>
-
+        <TableLayout>
         <TableRow
             android:id="@+id/budgetRow"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingStart="20dp"
+            android:paddingStart="30dp"
             android:paddingTop="10dp"
-            android:paddingEnd="20dp"
-            android:paddingBottom="10dp">
+            android:paddingEnd="30dp">
 
             <TextView
                 android:id="@+id/budgetText"
@@ -59,24 +58,40 @@
                 android:layout_weight="2"
                 android:fontFamily="@font/alata"
                 android:text="Expense Tracking"
-                android:textSize="20sp" />
+                android:textSize="20sp"/>
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/budgetSwitch"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"/>
+                android:layout_height="36dp"
+                android:checked="true" />
 
         </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp"
+            android:paddingBottom="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:textStyle="italic"
+                android:text="Collect pricing data when scanning receipts."
+                android:textSize="12sp" />
+        </TableRow>
 
+    </TableLayout>
+
+        <TableLayout>
         <TableRow
             android:id="@+id/wasteRow"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingStart="20dp"
+            android:paddingStart="30dp"
             android:paddingTop="10dp"
-            android:paddingEnd="20dp"
-            android:paddingBottom="10dp">
+            android:paddingEnd="30dp">
 
             <TextView
                 android:id="@+id/wasteText"
@@ -90,36 +105,64 @@
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/wasteSwitch"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="36dp"
                 android:checked="true"/>
-
         </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:paddingBottom="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:textStyle="italic"
+                    android:text="Track food depletion rate."
+                    android:textSize="12sp" />
+            </TableRow>
+        </TableLayout>
 
+        <TableLayout>
         <TableRow
-            android:id="@+id/blankRow0"
+            android:id="@+id/offlineRow"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingStart="20dp"
+            android:paddingStart="30dp"
             android:paddingTop="10dp"
-            android:paddingEnd="20dp"
-            android:paddingBottom="10dp">
+            android:paddingEnd="30dp">
 
             <TextView
-                android:id="@+id/blankText0"
+                android:id="@+id/offlineTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:fontFamily="@font/alata"
-                android:text="Offline?"
+                android:text="Offline Mode"
                 android:textSize="20sp" />
 
             <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/blankSwitch"
+                android:id="@+id/offlineSwitch"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
+                android:layout_height="36dp"
                 android:checked="true"/>
         </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:paddingBottom="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:textStyle="italic"
+                    android:text="Disable remote storage and reduce data usage."
+                    android:textSize="12sp" />
+            </TableRow>
+        </TableLayout>
 
     </TableLayout>
 
@@ -130,13 +173,30 @@
         android:background="@drawable/custom_button"
         android:fontFamily="@font/alata"
         android:text="Terms &amp; Conditions"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:textAllCaps="false"
         android:textColor="@color/black_shade_1"
         app:backgroundTint="@color/purple_200"
         app:layout_constraintTop_toBottomOf="@id/settingsTable"
+        tools:layout_editor_absoluteX="142dp"
+        tools:layout_editor_absoluteY="523dp" />
+
+    <Button
+        android:id="@+id/aboutUs_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/alata"
+        android:text="About Us"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:textAllCaps="false"
+        android:textColor="@color/black_shade_1"
+        app:backgroundTint="@color/purple_200"
+        app:layout_constraintTop_toBottomOf="@id/TnC_button"
         tools:layout_editor_absoluteX="142dp"
         tools:layout_editor_absoluteY="523dp" />
 
