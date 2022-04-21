@@ -53,4 +53,7 @@ dependencies {
 
     implementation 'com.journeyapps:zxing-android-embedded:3.4.0'
 
+    implementation 'org.apache.httpcomponents:httpcore:4.4.10'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.6'
+
 }

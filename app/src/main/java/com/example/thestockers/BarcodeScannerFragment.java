@@ -10,6 +10,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,11 +29,36 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URI;
 import java.util.List;
+
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.*;
+import org.apache.http.*;
+import org.apache.http.impl.*;
+import org.apache.http.impl.auth.BasicScheme;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.HTTP;
+
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class BarcodeScannerFragment extends Fragment implements View.OnClickListener{
 
     Button scanBtn;
+    public final String TAG = "In Barcode Scanner: ";
+    String scanResult;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -105,6 +131,46 @@ public class BarcodeScannerFragment extends Fragment implements View.OnClickList
 
     }
 
+    //Establish https connection to API server
+    public static String getRequest() {
+        StringBuffer stringBuffer = new StringBuffer("");
+        BufferedReader bufferedReader = null;
+        try {
+            HttpClient httpClient = new DefaultHttpClient();
+            HttpGet httpGet = new HttpGet();
+
+            URI uri = new URI("https://api.iamdata.co/v1/products");
+            httpGet.setURI(uri);
+            httpGet.addHeader(BasicScheme.authenticate(
+                    new UsernamePasswordCredentials("user", "password"),
+                    HTTP.UTF_8, false));
+
+            HttpResponse httpResponse = httpClient.execute(httpGet);
+            InputStream inputStream = httpResponse.getEntity().getContent();
+            bufferedReader = new BufferedReader(new InputStreamReader(
+                    inputStream));
+
+            String readLine = bufferedReader.readLine();
+            while (readLine != null) {
+                stringBuffer.append(readLine);
+                stringBuffer.append("\n");
+                readLine = bufferedReader.readLine();
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        } finally {
+            if (bufferedReader != null) {
+                try {
+                    bufferedReader.close();
+                } catch (IOException e) {
+                    // TODO: handle exception
+                }
+            }
+        }
+        return stringBuffer.toString();
+    }
+
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
@@ -112,8 +178,11 @@ public class BarcodeScannerFragment extends Fragment implements View.OnClickList
 
         if (result != null) {
             if (result.getContents() != null) {
+                // 617375091986
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setMessage(result.getContents());
+                Log.wtf(TAG, "onActivityResult: " + result);
+                Log.wtf(TAG, "onActivityResult: " + result.getContents());
                 builder.setTitle("Scanning Result");
                 builder.setPositiveButton("Scan Again", new DialogInterface.OnClickListener() {
                     @Override
@@ -123,7 +192,7 @@ public class BarcodeScannerFragment extends Fragment implements View.OnClickList
                 }).setNegativeButton("finish", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getContext(), "in finish", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getContext(), "in finish", Toast.LENGTH_LONG).show();
                         return;
                         // finish();
                     }
