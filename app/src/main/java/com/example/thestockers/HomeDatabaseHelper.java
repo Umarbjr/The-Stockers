@@ -71,7 +71,8 @@ class HomeDatabaseHelper extends SQLiteOpenHelper {
         for(int i = 0; i < dataList.size(); i++) {
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues cv = new ContentValues();
-            cv.put(COLUMN_DATE, getDate());
+            cv.put(COLUMN_ID, dataList.get(i).get(0));
+            cv.put(COLUMN_DATE, dataList.get(i).get(1));
             cv.put(COLUMN_HOME_PRODUCT_NAME, dataList.get(i).get(2));
             cv.put(COLUMN_HOME_QUANTITY, dataList.get(i).get(3));
             cv.put(COLUMN_UNIT_OF_MEASURE, dataList.get(i).get(4));
