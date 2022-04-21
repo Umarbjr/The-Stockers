@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ScannerActivity"
-    android:background="@color/pastel_green">
+    tools:context=".ScannerActivity">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/scanner_viewPager"
@@ -23,7 +22,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:elevation="16dp">
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/receipt_tabItem"

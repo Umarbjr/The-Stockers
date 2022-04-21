@@ -12,12 +12,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginBottom="3dp">
+        android:layout_marginTop="3dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="4dp"
+            android:paddingTop="3dp"
             android:background="@color/purple_200">
 
             <TextView
@@ -63,6 +63,7 @@
                 android:fontFamily="@font/alata"
                 android:gravity="center_vertical"
                 android:text="count"
+                android:textColor="@color/black_shade_1"
                 android:textSize="14sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/quantity_txt"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -77,6 +78,7 @@
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="6dp"
                 android:text="03-10"
+                android:textColor="@color/black_shade_1"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

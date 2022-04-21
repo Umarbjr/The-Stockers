@@ -8,8 +8,7 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    tools:context=".HomeUpdateActivity"
-    android:background="@color/pastel_green">
+    tools:context=".HomeUpdateActivity">
 
     <EditText
         android:id="@+id/productET_update"

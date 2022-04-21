@@ -35,7 +35,6 @@
             android:text="Scan receipts to add items easily."
             android:fontFamily="@font/alata"
             android:textAlignment="center"
-            android:textColor="@color/black_shade_1"
             android:textStyle="bold" />
 
         <Button
@@ -44,7 +43,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scan_resultTV"
+            app:layout_constraintTop_toBottomOf="@+id/expense_switch"
             android:layout_marginStart="30dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="30dp"
@@ -70,7 +69,31 @@
             android:fontFamily="@font/alata"
             android:textAllCaps="false"
             android:background="@drawable/custom_button"
-            android:backgroundTint="@color/purple_200"
-            android:textColor="@color/black_shade_1"/>
+            android:backgroundTint="@color/purple_200" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/expense_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Track Expense"
+            android:textStyle="italic"
+            android:fontFamily="@font/alata"
+            app:layout_constraintBottom_toTopOf="@id/capture_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/scan_resultTV"
+            app:layout_constraintTop_toBottomOf="@id/scan_resultTV" />
+
+        <TextView
+            android:id="@+id/priceTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$0.00"
+            android:textColor="@color/teal_200"
+            android:textStyle="italic"
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="@id/expense_switch"
+            app:layout_constraintEnd_toEndOf="@id/scan_resultTV"
+            app:layout_constraintBaseline_toBaselineOf="@id/expense_switch"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

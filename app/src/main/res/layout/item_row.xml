@@ -11,12 +11,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="12dp">
+        android:layout_marginTop="3dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="12dp">
+            android:paddingTop="4dp">
 
             <TextView
                 android:id="@+id/item_name_txt"
@@ -24,8 +24,8 @@
                 android:layout_height="wrap_content"
                 android:text="Name 1"
                 android:textColor="#000"
-                android:textSize="40sp"
-                android:textStyle="bold"
+                android:textSize="22sp"
+                android:fontFamily="@font/alata"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +36,8 @@
                 android:layout_height="wrap_content"
                 android:text="100"
                 android:textColor="#000"
-                android:textSize="30sp"
+                android:textSize="22sp"
+                android:fontFamily="@font/alata"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

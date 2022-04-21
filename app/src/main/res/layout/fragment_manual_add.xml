@@ -57,7 +57,6 @@
         android:textAllCaps="false"
         android:fontFamily="@font/alata"
         android:background="@drawable/custom_button"
-        android:backgroundTint="@color/purple_200"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

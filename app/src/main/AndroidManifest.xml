@@ -19,6 +19,7 @@
             android:name=".HomeUpdateActivity"
             android:exported="true"
             android:parentActivityName=".MainActivity" />
+
         <activity
             android:name=".ListAddActivity"
             android:exported="false"

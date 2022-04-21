@@ -17,6 +17,7 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -26,6 +27,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -50,8 +52,9 @@ import okhttp3.Response;
 public class ReceiptScannerFragment extends Fragment {
     private ImageView capturedImage;
     private Button captureBtn, addAllBtn;
-    public TextView resultTV;
+    public TextView resultTV, priceTV;
     private Bitmap imageBitmap;
+    SwitchCompat expenseSwitch;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     int CAMERA_PERMISSION_CODE = 200;
     int FILE_WRITE_PERMISSION = 300;
@@ -65,6 +68,20 @@ public class ReceiptScannerFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_receipt_scanner, container, false);
         capturedImage = view.findViewById(R.id.receipt_logo);
         resultTV = view.findViewById(R.id.scan_resultTV);
+        priceTV = view.findViewById(R.id.priceTV);
+        expenseSwitch = view.findViewById(R.id.expense_switch);
+
+        expenseSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    priceTV.setVisibility(View.VISIBLE);
+                }else{
+                    priceTV.setVisibility(View.GONE);
+                }
+            }
+        });
+
         captureBtn = view.findViewById(R.id.capture_button);
         captureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -255,6 +272,7 @@ public class ReceiptScannerFragment extends Fragment {
             }
             resultTV.setText(resultText);
             //resultTV.setText("Milk - 1\nCheddar Cheese - 1\n Smoked Bacon - 1\n Frozen Pizza - 1\nPepsi - 1\nChicken Thighs - 1\nBrocolli - 1\nBell Peppers - 1");
+            //priceTV.setText("$25.98");
             if(resultText.trim().length() > 0){
                 addAllBtn.setEnabled(true);
             }
