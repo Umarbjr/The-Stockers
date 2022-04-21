@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ScannerActivity">
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:context=".BarcodeScannerFragment">
 
 <!--    <FrameLayout-->
 <!--        android:layout_width="match_parent"-->
@@ -23,16 +27,55 @@
 <!--            android:text="Barcode Scanner Fragment"-->
 <!--            android:textSize="25sp" />-->
 
-        <Button
-            android:id="@+id/scanBtn"
-            android:layout_centerInParent="true"
+        <ImageView
+            android:id="@+id/barcode_logo"
+            android:layout_width="200dp"
+            android:layout_height="300dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="40dp"
+            android:orientation="vertical"
+            android:src="@drawable/barcode_image"
+            app:flow_horizontalAlign="center"
+            app:flow_verticalAlign="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/scan_resultTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Scan now"
-            android:textSize="30sp">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/barcode_logo"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="Scan barcodes to add items easily."
+            android:fontFamily="@font/alata"
+            android:textAlignment="center"
+            android:textColor="@color/black_shade_1"
+            android:textStyle="bold" />
 
-        </Button>
+
+        <Button
+            android:id="@+id/scanBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scan_resultTV"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            android:text="Scan Barcode"
+            android:fontFamily="@font/alata"
+            android:textAllCaps="false"
+            android:background="@drawable/custom_button"
+            app:backgroundTint="@color/purple_200"
+            android:textColor="@color/black_shade_1"/>
 
 <!--    </FrameLayout>-->
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
