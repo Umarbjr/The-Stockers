@@ -14,14 +14,17 @@
         android:layout_marginBottom="58dp"
         android:clickable="true"
         android:focusable="true"
+        app:elevation="10dp"
         android:src="@drawable/ic_add"
+        app:backgroundTint="@color/purple_500"
+        app:tint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_recyclerView"
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:paddingTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
