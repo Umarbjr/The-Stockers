@@ -66,6 +66,11 @@ public class HomeCustomAdapter extends RecyclerView.Adapter<HomeCustomAdapter.My
         return product.size();
     }
 
+    public void filterList(ArrayList<String> filteredList){
+        product = filteredList;
+        notifyDataSetChanged();
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView dateTxt, productTxt, quantityTxt, unitTxt;

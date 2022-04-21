@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -28,6 +29,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class HomeFragment extends Fragment {
 
@@ -193,6 +195,25 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.top_menu, menu);
+
+        //Action search function
+        MenuItem menuItem = menu.findItem(R.id.search_btn);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setQueryHint("Do I have ... ?");
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filter(newText);
+                return false;
+            }
+        });
+
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -211,8 +232,18 @@ public class HomeFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    public int[] getWasteConsumptionData(){
+    /*public int[] getWasteConsumptionData(){
         return waste_consumed;
+    }*/
+
+    private void filter(String text){
+        ArrayList<String> filteredList = new ArrayList<>();
+        for(String item : product_name){
+            if(item.toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(item);
+            }
+        }
+        customAdapter.filterList(filteredList);
     }
 
 }
