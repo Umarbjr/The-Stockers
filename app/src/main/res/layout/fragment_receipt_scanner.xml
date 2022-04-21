@@ -37,6 +37,14 @@
             android:textAlignment="center"
             android:textStyle="bold" />
 
+        <ImageView
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            app:layout_constraintStart_toEndOf="@id/scan_resultTV"
+            app:layout_constraintTop_toTopOf="@id/scan_resultTV"
+            android:paddingStart="4dp"
+            android:src="@drawable/ic_note"/>
+
         <Button
             android:id="@+id/capture_button"
             android:layout_width="match_parent"

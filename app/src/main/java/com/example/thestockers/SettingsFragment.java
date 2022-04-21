@@ -14,7 +14,7 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 
 public class SettingsFragment extends Fragment {
-    SwitchCompat darkThemeBtn;
+    SwitchCompat darkThemeBtn, offlineBtn;
     SharedPreferences sharedPreferences = null;
 
     @Override
@@ -25,6 +25,7 @@ public class SettingsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
         darkThemeBtn = view.findViewById(R.id.darkModeSwitch);
+        offlineBtn = view.findViewById(R.id.offlineSwitch);
 
         setDarkTheme();
 
@@ -46,6 +47,15 @@ public class SettingsFragment extends Fragment {
                 }
             }
         });
+
+        /*offlineBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+
+                }
+            }
+        });*/
 
         return view;
     }
