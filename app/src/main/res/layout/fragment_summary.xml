@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     tools:context=".SummaryFragment">
 
     <ScrollView
@@ -48,6 +47,7 @@
                 android:layout_marginStart="20dp"/>
 
             <com.anychart.AnyChartView
+                android:backgroundTint="@color/pastel_green"
                 android:id="@+id/pie_chart_view"
                 android:layout_width="match_parent"
                 android:layout_height="360dp"

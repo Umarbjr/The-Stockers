@@ -24,7 +24,9 @@
         android:layout_marginBottom="78dp"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/ic_add"
+        android:src="@drawable/ic_note"
+        app:backgroundTint="@color/purple_500"
+        app:tint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

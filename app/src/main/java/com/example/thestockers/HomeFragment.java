@@ -77,6 +77,7 @@ public class HomeFragment extends Fragment {
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
         setHasOptionsMenu(true);
+
         return view;
     }
 
@@ -121,13 +122,14 @@ public class HomeFragment extends Fragment {
         public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView,
                                 @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY,
                                 int actionState, boolean isCurrentlyActive) {
-                double rowMarginBottom = 3.4*3;
+                int rowMarginTop = 4*3;
+                int rowMarginBottom = 3;
                 int itemHeight = viewHolder.itemView.getBottom() - viewHolder.itemView.getTop();
             //Swiped right
             if(dX > 0) {
                 // Set red swipe background
                 final ColorDrawable redBackground = new ColorDrawable(Color.parseColor("#FF0000"));
-                redBackground.setBounds(0, viewHolder.itemView.getTop(),
+                redBackground.setBounds(0, (int)(viewHolder.itemView.getTop() + rowMarginTop),
                         (int) (viewHolder.itemView.getLeft() + dX), (int)(viewHolder.itemView.getBottom() - rowMarginBottom));
                 redBackground.draw(c);
 
@@ -148,8 +150,8 @@ public class HomeFragment extends Fragment {
 
             //Swiped left
             if (dX < 0) {
-                final ColorDrawable greenBackground = new ColorDrawable(Color.parseColor("#76ff7a"));
-                greenBackground.setBounds(0, viewHolder.itemView.getTop(),
+                final ColorDrawable greenBackground = new ColorDrawable(Color.parseColor("#21B6A8"));
+                greenBackground.setBounds(0, (int)(viewHolder.itemView.getTop() + rowMarginTop),
                         viewHolder.itemView.getRight(), (int)(viewHolder.itemView.getBottom() - rowMarginBottom));
                 greenBackground.draw(c);
 
