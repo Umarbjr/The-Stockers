@@ -62,13 +62,13 @@ public class SummaryFragment extends Fragment {
 
         pie.data(dataEntries);
         //dark mode background
-        pie.background().fill("black");
+        //pie.background().fill("black");
         chartView.setChart(pie);
     }
 
     public void setupLineGraph(){
         Cartesian bar = AnyChart.column();
-        String[] month = {"Jan", "Feb", "Mar", "Apr", "May", "June"};
+        String[] month = {"Nov", "Dec", "Jan", "Feb", "Mar", "Apr"};
         double[] spending = {245.80, 302.20, 270.40, 332.51, 262.00, 292.19};
 
         List<DataEntry> spendingData = new ArrayList<>();
@@ -79,7 +79,7 @@ public class SummaryFragment extends Fragment {
 
         bar.data(spendingData);
         //dark mode background
-        bar.background().fill("black");
+        //bar.background().fill("black");
         graphView.setChart(bar);
 
     }
