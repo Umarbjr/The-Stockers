@@ -43,7 +43,7 @@
             app:layout_constraintStart_toEndOf="@id/scan_resultTV"
             app:layout_constraintTop_toTopOf="@id/scan_resultTV"
             android:paddingStart="4dp"
-            android:src="@drawable/ic_note"/>
+            android:src="@drawable/ic_create"/>
 
         <Button
             android:id="@+id/capture_button"
